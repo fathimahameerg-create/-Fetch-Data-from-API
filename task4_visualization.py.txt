@@ -1,0 +1,22 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+# Load latest CSV
+folder = "data"
+files = os.listdir(folder)
+csv_files = [f for f in files if f.endswith(".csv")]
+
+latest_file = sorted(csv_files)[-1]
+file_path = os.path.join(folder, latest_file)
+
+df = pd.read_csv(file_path)
+
+# Plot: Category Count
+df["category"].value_counts().plot(kind="bar")
+
+plt.title("Number of Stories per Category")
+plt.xlabel("Category")
+plt.ylabel("Count")
+
+plt.show()
